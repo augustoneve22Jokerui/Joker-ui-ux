@@ -1,0 +1,17 @@
+<!-- HEADER / NAVBAR GLOBAL REUTILIZÁVEL -->
+<header>
+    <a href="/" class="logo-hurk" aria-label="Página Inicial - Joker UI">
+        <img src="/images/logo.png" alt="Augusto Neves Logo" onerror="this.style.display='none'">
+    </a>
+    <ul class="nav-menu">
+        <li><a href="/" class="<%= typeof activePage !== 'undefined' && activePage === 'home' ? 'active' : '' %>">Início</a></li>
+        <li><a href="/projetos" class="<%= typeof activePage !== 'undefined' && activePage === 'projects' ? 'active' : '' %>">Projectos <span class="nav-badge">12</span></a></li>
+        <li><a href="/vlogstudents" class="<%= typeof activePage !== 'undefined' && activePage === 'vlogstudents' ? 'active' : '' %>">Vlog students</a></li>
+        <li><a href="/aotravel" class="<%= typeof activePage !== 'undefined' && activePage === 'aotravel' ? 'active' : '' %>">Ao travel</a></li>
+        <li><a href="/rentflow" class="<%= typeof activePage !== 'undefined' && activePage === 'rentflow' ? 'active' : '' %>">Rentflow</a></li>
+        <li><a href="/contactos" class="<%= typeof activePage !== 'undefined' && activePage === 'contacts' ? 'active' : '' %>">Contactos</a></li>
+    </ul>
+    <button class="menu-hamburger" aria-label="Abrir Menu de Navegação">
+        <span></span><span></span><span></span>
+    </button>
+</header>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #040208;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Zero scroll - Proporção única fixa */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1500px;
+        }
+
+        /* ===== CYBERNETIC AMBIENT GLOWS & GRID ===== */
+        .ambient-purple-glow-1 {
+            position: absolute; top: -15%; left: -10%; width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.35) 0%, rgba(88, 28, 135, 0.12) 40%, transparent 70%);
+            z-index: 0; pointer-events: none; filter: blur(60px);
+            animation: pulseGlowA 8s ease-in-out infinite alternate;
+        }
+        .ambient-purple-glow-2 {
+            position: absolute; bottom: -15%; right: -10%; width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, rgba(76, 29, 149, 0.1) 45%, transparent 70%);
+            z-index: 0; pointer-events: none; filter: blur(70px);
+            animation: pulseGlowB 10s ease-in-out infinite alternate;
+        }
+        @keyframes pulseGlowA {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(30px, 20px); }
+        }
+        @keyframes pulseGlowB {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(-40px, -30px); }
+        }
+
+        /* Fundo de Grade Tecnológica subtil */
+        .cyber-grid-bg {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1; pointer-events: none;
+        }
+
+        /* ===== SLIDES DE FUNDO EM CARROSSEL ===== */
+        .hero-bg-slide {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transform: scale(1.05);
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2;
+        }
+        .hero-bg-slide.active { opacity: 0.35; transform: scale(1); }
+        .hero-bg-overlay {
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(4, 2, 8, 0.6) 0%, rgba(4, 2, 8, 0.92) 85%, rgba(4, 2, 8, 0.98) 100%);
+            z-index: 3; pointer-events: none;
+        }
+
+        /* ===== CONTAINER PRINCIPAL DE ALTA PRECISÃO (SINGLE SCREEN) ===== */
+        .error-supreme-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 900px;
+            padding: 0 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* ===== STATUS BADGE HOLOGRÁFICO ===== */
+        .error-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(109, 40, 217, 0.1) 100%);
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            backdrop-filter: blur(12px);
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d8b4fe;
+            margin-bottom: 15px;
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+            opacity: 0; transform: translateY(15px);
+            animation: fadeInCustom 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        .error-status-badge::before {
+            content: ''; width: 6px; height: 6px; border-radius: 50%;
+            background: #a855f7; box-shadow: 0 0 10px #a855f7;
+        }
+
+        /* ===== ÁREA DO AVATAR CENTRAL & ÓRBITA DE ÍCONES (Compacto para Proporção 500) ===== */
+        .avatar-area-hero {
+            position: relative; width: 210px; height: 210px;
+            margin: 0 auto 10px auto; display: flex; align-items: center; justify-content: center;
+            opacity: 0; transform: scale(0.85);
+            animation: fadeInScaleCustom 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+        }
+        .avatar-neon-ring {
+            position: absolute; width: 185px; height: 185px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.5) 0%, rgba(109, 40, 217, 0.15) 60%, transparent 80%);
+            border-radius: 50%; z-index: 1;
+            box-shadow: 0 0 45px rgba(139, 92, 246, 0.6), inset 0 1px 20px rgba(167, 139, 250, 0.4);
+            animation: pulseNeon 4s ease-in-out infinite;
+        }
+        @keyframes pulseNeon {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 45px rgba(139, 92, 246, 0.6); }
+            50% { transform: scale(1.06); box-shadow: 0 0 75px rgba(167, 139, 250, 0.9); }
+        }
+
+        .model-avatar-img {
+            position: relative; z-index: 2; height: 155px; width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 20px rgba(139, 92, 246, 0.5));
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .model-avatar-img:hover { transform: scale(1.08) translateY(-4px); }
+
+        .float-icon {
+            position: absolute; z-index: 3; object-fit: contain;
+            animation: floatIconAnim 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.9)) drop-shadow(0 0 20px rgba(139, 92, 246, 0.4));
+        }
+        @keyframes floatIconAnim {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(4deg); }
+        }
+        .icon-react { width: 30px; top: 8px; left: 2px; animation-delay: 0s; }
+        .icon-ai { width: 32px; top: 70px; left: -10px; animation-delay: 0.5s; }
+        .icon-xd { width: 26px; bottom: 20px; left: 8px; animation-delay: 1s; }
+        .icon-figma { width: 34px; top: 8px; right: 8px; animation-delay: 1.5s; }
+        .icon-next { width: 35px; top: 70px; right: -10px; animation-delay: 2s; }
+        .icon-bootstrap { width: 28px; bottom: 22px; right: 8px; animation-delay: 2.5s; }
+
+        /* ===== TIPOGRAFIA TITULAR DO ERRO 500 ===== */
+        .error-main-title-box {
+            opacity: 0; transform: translateY(15px);
+            animation: fadeInCustom 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+            margin-bottom: 4px;
+        }
+        .error-main-title-box h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 4rem; font-weight: 900; letter-spacing: -2.5px;
+            line-height: 1;
+        }
+        .error-main-title-box h1 .gradient-line {
+            background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 40%, #7e22ce 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 45px rgba(167, 139, 250, 0.6);
+        }
+        .error-main-title-box h1 .outline-text {
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(168, 85, 247, 0.6);
+            text-shadow: 0 0 25px rgba(139, 92, 246, 0.4);
+            margin-left: 8px;
+        }
+
+        .error-subtitle {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem; font-weight: 700; color: #ffffff;
+            margin-bottom: 8px; letter-spacing: -0.3px;
+            opacity: 0; transform: translateY(15px);
+            animation: fadeInCustom 1s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+        }
+
+        .error-description {
+            color: #94a3b8; font-size: 0.88rem; line-height: 1.5;
+            max-width: 500px; margin: 0 auto 12px auto;
+            opacity: 0; transform: translateY(15px);
+            animation: fadeInCustom 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+        }
+
+        /* ===== STACK TRACE / ERROR DETAILS (GLASSMORPHISM COMPACTO) ===== */
+        .error-details {
+            background: rgba(18, 14, 30, 0.8);
+            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            padding: 10px 16px;
+            color: #fca5a5;
+            font-size: 0.75rem;
+            text-align: left;
+            width: 100%;
+            max-width: 580px;
+            max-height: 110px;
+            overflow-y: auto;
+            word-break: break-all;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+            opacity: 0; transform: translateY(15px);
+            animation: fadeInCustom 1s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+        }
+        .error-details strong {
+            color: #f87171;
+            display: block;
+            margin-bottom: 2px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .error-details pre {
+            white-space: pre-wrap; 
+            font-family: monospace;
+            color: #cbd5e1;
+        }
+
+        /* ===== BOTÃO DE AÇÃO PREMIUM ===== */
+        .error-action-area {
+            opacity: 0; transform: translateY(15px);
+            animation: fadeInCustom 1s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
+        }
+        .btn-hero-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+            color: #ffffff; padding: 12px 28px; border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.88rem; font-weight: 700; letter-spacing: 0.4px;
+            text-decoration: none; border: none; cursor: pointer;
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.5), 0 0 25px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255,255,255,0.25);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative; overflow: hidden;
+        }
+        .btn-hero-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transition: left 0.7s ease;
+        }
+        .btn-hero-primary:hover::before { left: 100%; }
+        .btn-hero-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(139, 92, 246, 0.7), 0 0 35px rgba(167, 139, 250, 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+        }
+        .btn-hero-primary svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2.5; fill: none; }
+
+        /* ===== CONTROLES DE CARROSSEL DE FUNDO (DOTS & ARROWS) ===== */
+        .hero-carousel-controls {
+            position: absolute; bottom: 20px; left: 50%;
+            transform: translateX(-50%); z-index: 15;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: linear-gradient(135deg, rgba(18, 14, 30, 0.85) 0%, rgba(12, 9, 20, 0.9) 100%);
+            backdrop-filter: blur(16px);
+            padding: 8px 16px; border-radius: 50px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+        .carousel-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25); cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+        .carousel-dot:hover { background: rgba(167, 139, 250, 0.6); transform: scale(1.2); }
+        .carousel-dot.active {
+            width: 32px; border-radius: 5px;
+            background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%);
+            box-shadow: 0 0 20px rgba(167, 139, 250, 1), 0 0 40px rgba(139, 92, 246, 0.6);
+            border-color: transparent;
+        }
+
+        .hero-nav-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(88, 28, 135, 0.1) 100%);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 15;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .hero-nav-arrow:hover {
+            border-color: rgba(167, 139, 250, 0.9);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.35) 0%, rgba(88, 28, 135, 0.2) 100%);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 25px rgba(139, 92, 246, 0.5);
+        }
+        .hero-nav-arrow.prev { left: 25px; }
+        .hero-nav-arrow.next { right: 25px; }
+        .hero-nav-arrow svg { width: 18px; height: 18px; stroke: #ffffff; stroke-width: 2.5; fill: none; filter: drop-shadow(0 0 6px rgba(167, 139, 250, 0.6)); }
+
+        @keyframes fadeInCustom {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInScaleCustom {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .error-main-title-box h1 { font-size: 3.2rem; }
+            .error-subtitle { font-size: 1.1rem; }
+            .avatar-area-hero { width: 175px; height: 175px; }
+            .avatar-neon-ring { width: 150px; height: 150px; }
+            .model-avatar-img { height: 130px; }
+            .hero-nav-arrow { width: 36px; height: 36px; }
+            .hero-nav-arrow.prev { left: 10px; }
+            .hero-nav-arrow.next { right: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-purple-glow-1"></div>
+    <div class="ambient-purple-glow-2"></div>
+    <div class="cyber-grid-bg"></div>
+
+    <!-- Slides de Fundo do Carrossel Dinâmico -->
+    <div class="hero-bg-slide active" style="background-image: url('/images/fundo.png');"></div>
+    <div class="hero-bg-slide" style="background-image: url('/images/fundo1.png');"></div>
+    <div class="hero-bg-slide" style="background-image: url('/images/fundo2.png');"></div>
+    <div class="hero-bg-slide" style="background-image: url('/images/fundo3.png');"></div>
+    <div class="hero-bg-overlay"></div>
+
+    <!-- Setas Laterais de Navegação do Carrossel -->
+    <div class="hero-nav-arrow prev" onclick="prevHeroSlide()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </div>
+    <div class="hero-nav-arrow next" onclick="nextHeroSlide()">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </div>
+
+    <!-- Conteúdo Centralizado Absoluto (Sem Scroll) -->
+    <div class="error-supreme-wrapper">
+       
+
+        <!-- Avatar Central Rodear de Ícones Orbitais -->
+        <div class="avatar-area-hero">
+            <div class="avatar-neon-ring"></div>
+            <img src="/images/react.png" alt="React" class="float-icon icon-react" onerror="this.style.display='none'">
+            <img src="/images/ai.png" alt="Illustrator" class="float-icon icon-ai" onerror="this.style.display='none'">
+            <img src="/images/photo.png" alt="XD" class="float-icon icon-xd" onerror="this.style.display='none'">
+            <img src="/images/avatar.png" alt="Augusto Neves Avatar" class="model-avatar-img" onerror="this.style.display='none'">
+            <img src="/images/figma.png" alt="Figma" class="float-icon icon-figma" onerror="this.style.display='none'">
+            <img src="/images/Bootstrap.png" alt="Next.js" class="float-icon icon-next" onerror="this.style.display='none'">
+            <img src="/images/xd.png" alt="Bootstrap" class="float-icon icon-bootstrap" onerror="this.style.display='none'">
+        </div>
+
+        <div class="error-main-title-box">
+            <h1>
+                <span class="gradient-line">50</span>
+                <span class="outline-text">0</span>
+            </h1>
+        </div>
+
+        <div class="error-subtitle">Erro Interno do Servidor</div>
+        
+        <p class="error-description" id="error-desc-text">
+            <%= message %>
+        </p>
+
+        <% if (typeof error !== 'undefined' && error.stack) { %>
+            <div class="error-details">
+                <strong>Stack Trace Detalhado:</strong>
+                <pre><%= error.stack %></pre>
+            </div>
+        <% } %>
+
+        <div class="error-action-area">
+            <a href="/" class="btn-hero-primary">
+                <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Regressar à Página Inicial
+            </a>
+        </div>
+    </div>
+
+    <!-- Indicadores de Pontos Inferiores (Carrossel Dots) -->
+    <div class="hero-carousel-controls">
+        <div class="carousel-dot active" onclick="setHeroSlide(0)"></div>
+        <div class="carousel-dot" onclick="setHeroSlide(1)"></div>
+        <div class="carousel-dot" onclick="setHeroSlide(2)"></div>
+        <div class="carousel-dot" onclick="setHeroSlide(3)"></div>
+    </div>
+
+    <script>
+        let currentHeroIndex = 0;
+        const heroSlides = document.querySelectorAll('.hero-bg-slide');
+        const heroDots = document.querySelectorAll('.carousel-dot');
+
+        const errorTexts = [
+            "<%= message %>",
+            "Ocorreu um imprevisto técnico do lado do servidor. A nossa equipa de engenharia já foi notificada.",
+            "Falha crítica no processamento da aplicação central. Tentativa de recuperação em curso.",
+            "Anomalia detetada na arquitetura backend. Retorne à página principal com segurança."
+        ];
+
+        const descEl = document.getElementById('error-desc-text');
+
+        function setHeroSlide(index) {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroDots.forEach(dot => dot.classList.remove('active'));
+            heroSlides[index].classList.add('active');
+            heroDots[index].classList.add('active');
+            descEl.innerHTML = errorTexts[index];
+            currentHeroIndex = index;
+        }
+
+        function nextHeroSlide() {
+            let next = (currentHeroIndex + 1) % heroSlides.length;
+            setHeroSlide(next);
+        }
+
+        function prevHeroSlide() {
+            let prev = (currentHeroIndex - 1 + heroSlides.length) % heroSlides.length;
+            setHeroSlide(prev);
+        }
+
+        setInterval(() => { nextHeroSlide(); }, 6500);
+    </script>
+</body>
+</html>

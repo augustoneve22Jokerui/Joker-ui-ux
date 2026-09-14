@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="pt-AO" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <meta name="description" content="VlogStudents — A rede social definitiva para estudantes partilharem vlogs, momentos e comunidades.">
+    <link rel="icon" type="image/png" href="/images/vlog.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/vlogstudentes.css">
+</head>
+<body>
+
+    <!-- TOPBAR DE NAVEGAÇÃO SUPERIOR (FIGMA DESIGN SYSTEM) -->
+    <header class="app-topbar">
+        <div class="topbar-container">
+            <a class="app-logo" href="/">
+                <div class="logo-icon-wrapper">
+                    <img src="/images/vlog.png" alt="VlogStudents Logo" onerror="this.style.display='none'">
+                </div>
+                <span>Vlog<span class="logo-highlight">Students</span></span>
+            </a>
+
+            <nav class="app-nav">
+                <a href="#feed" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    <span>Feed</span>
+                </a>
+                <a href="#explore" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <span>Explorar</span>
+                </a>
+                <a href="#creators" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>Criadores</span>
+                </a>
+                <a href="#audio" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx=6 cy=18 r=3/><circle cx=18 cy=16 r=3/></svg>
+                    <span>Áudios</span>
+                </a>
+            </nav>
+
+            <div class="topbar-actions">
+                <!-- Botão de alternância de Tema (Modo Claro / Escuro) -->
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Alternar Tema" title="Mudar Modo Claro/Escuro">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+
+                <button class="btn-create-vlog" data-toast="Abrir estúdio de gravação de vlogs">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Novo Vlog</span>
+                </button>
+
+                <div class="user-avatar-badge" data-toast="Perfil de Estudante: Augusto Neves">
+                    <span>AN</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL DA REDE SOCIAL -->
+    <main class="social-main-container" id="feed">
+
+        <!-- SUB-HEADER DE STORIES / DESTAQUES RÁPIDOS -->
+        <section class="stories-ribbon-section">
+            <div class="stories-container">
+                <div class="story-item create-story" data-toast="Criar o teu próprio Story do Campus">
+                    <div class="story-ring">
+                        <div class="story-thumb plus-icon">+</div>
+                    </div>
+                    <span class="story-name">Adicionar</span>
+                </div>
+                <div class="story-item" data-toast="A ver story de Ana Martins">
+                    <div class="story-ring active">
+                        <div class="story-thumb"><img src="/images/vlog.png" alt="Ana" onerror="this.style.display='none'"><span>AM</span></div>
+                    </div>
+                    <span class="story-name">Ana Martins</span>
+                </div>
+                <div class="story-item" data-toast="A ver story de João Silva">
+                    <div class="story-ring active">
+                        <div class="story-thumb"><span>JS</span></div>
+                    </div>
+                    <span class="story-name">João Silva</span>
+                </div>
+                <div class="story-item" data-toast="A ver story de Inês Costa">
+                    <div class="story-ring active">
+                        <div class="story-thumb"><span>IC</span></div>
+                    </div>
+                    <span class="story-name">Inês Costa</span>
+                </div>
+                <div class="story-item" data-toast="A ver story de Miguel Tech">
+                    <div class="story-ring">
+                        <div class="story-thumb"><span>MT</span></div>
+                    </div>
+                    <span class="story-name">Miguel Tech</span>
+                </div>
+                <div class="story-item" data-toast="A ver story de Sofia Arte">
+                    <div class="story-ring">
+                        <div class="story-thumb"><span>SA</span></div>
+                    </div>
+                    <span class="story-name">Sofia Arte</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAYOUT DE 3 COLUNAS ESTILO TIKTOK/TWITTER PRO -->
+        <div class="social-feed-grid">
+
+            <!-- COLUNA ESQUERDA: NAVEGAÇÃO E TWEENS/TENDÊNCIAS -->
+            <aside class="feed-sidebar-left">
+                <div class="sidebar-widget nav-menu-widget">
+                    <a href="#feed" class="side-menu-item active">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                        <span>Para Ti</span>
+                    </a>
+                    <a href="#explore" class="side-menu-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <span>Seguindo</span>
+                    </a>
+                    <a href="#audio" class="side-menu-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Explorar Vlogs</span>
+                    </a>
+                    <a href="#saved" class="side-menu-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                        <span>Guardados</span>
+                    </a>
+                </div>
+
+                <div class="sidebar-widget campus-trends-widget">
+                    <h3>Hashtags do Campus</h3>
+                    <div class="trend-item" data-toast="Filtrar por #VidaUniversitária">
+                        <span class="trend-cat">Educação · Em alta</span>
+                        <strong>#VidaUniversitária</strong>
+                        <small>14.2K publicações</small>
+                    </div>
+                    <div class="trend-item" data-toast="Filtrar por #CodeLife">
+                        <span class="trend-cat">Tecnologia · Campus</span>
+                        <strong>#CodeLife</strong>
+                        <small>8.9K publicações</small>
+                    </div>
+                    <div class="trend-item" data-toast="Filtrar por #HackathonAO">
+                        <span class="trend-cat">Eventos · Luanda</span>
+                        <strong>#HackathonAO</strong>
+                        <small>5.4K publicações</small>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUNA CENTRAL: O FEED DE VLOGS (TICK-TOCK / REELS WEB STYLE) -->
+            <section class="feed-main-column">
+
+                <!-- Caixa de Publicação Rápida -->
+                <div class="composer-card">
+                    <div class="composer-top">
+                        <div class="composer-user-avatar">AN</div>
+                        <input type="text" placeholder="O que está a acontecer no teu campus hoje?" class="composer-input" readonly data-toast="Abrir editor de vlog completo">
+                    </div>
+                    <div class="composer-bottom">
+                        <button class="composer-option-btn" data-toast="Adicionar vídeo/vlog">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                            <span>Vlog (Vídeo)</span>
+                        </button>
+                        <button class="composer-option-btn" data-toast="Adicionar fotografia">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                            <span>Foto / Momento</span>
+                        </button>
+                        <button class="composer-option-btn" data-toast="Partilhar áudio ou som">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                            <span>Áudio</span>
+                        </button>
+                        <button class="btn-publish-submit" data-toast="Publicar novo conteúdo">Publicar</button>
+                    </div>
+                </div>
+
+                <!-- POST / VLOG CARD 1 -->
+                <article class="vlog-post-card">
+                    <div class="vlog-post-header">
+                        <div class="vlog-author-info">
+                            <div class="vlog-author-avatar">AM</div>
+                            <div>
+                                <h4 class="vlog-author-name">Ana Martins <span class="verified-badge">✓</span></h4>
+                                <span class="vlog-post-time">Engenharia Informática · ISPTEC · Há 25 minutos</span>
+                            </div>
+                        </div>
+                        <button class="vlog-options-btn" data-toast="Opções da publicação">•••</button>
+                    </div>
+
+                    <div class="vlog-post-body">
+                        <p>A testar a nossa nova arquitetura de microsserviços para a feira de inovação académica. O código está limpo e a correr à velocidade da luz! <span class="post-tag">#CodeLife</span> <span class="post-tag">#ISPTEC</span></p>
+                    </div>
+
+                    <!-- REPRODUTOR DE VÍDEO / VLOG ESTILO TIKTOK -->
+                    <div class="vlog-media-container">
+                        <div class="vlog-video-preview">
+                            <span class="vlog-badge-duration">00:48</span>
+                            <div class="vlog-play-center-btn" data-toast="A reproduzir vlog em alta definição">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            </div>
+                        </div>
+                        <div class="vlog-audio-track-tag">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                            <span>Som original - Ana Martins · 1.4K usos</span>
+                        </div>
+                    </div>
+
+                    <div class="vlog-post-actions-bar">
+                        <button class="action-btn like-btn" data-likes="1420">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <span class="count">1.4K</span>
+                        </button>
+                        <button class="action-btn comment-toggle-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            <span>92</span>
+                        </button>
+                        <button class="action-btn" data-toast="Link do vlog copiado para a área de transferência">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                            <span>Partilhar</span>
+                        </button>
+                        <button class="action-btn bookmark-btn" data-toast="Publicação guardada nos favoritos">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Secção de Comentários Integrada -->
+                    <div class="vlog-comments-section">
+                        <div class="comment-item">
+                            <div class="comment-avatar">JS</div>
+                            <div class="comment-bubble">
+                                <strong>João Silva</strong>
+                                <p>Incrível Ana! Qual a framework que usaram no backend?</p>
+                            </div>
+                        </div>
+                        <div class="comment-input-box">
+                            <input type="text" placeholder="Escreve um comentário..." class="comment-input-field">
+                            <button class="comment-send-btn" data-toast="Comentário publicado">Enviar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- POST / VLOG CARD 2 -->
+                <article class="vlog-post-card">
+                    <div class="vlog-post-header">
+                        <div class="vlog-author-info">
+                            <div class="vlog-author-avatar" style="background: linear-gradient(135deg, #3b82f6, #1e40af);">LC</div>
+                            <div>
+                                <h4 class="vlog-author-name">Luís Costa</h4>
+                                <span class="vlog-post-time">Ciência de Computação · UAN · Há 1 hora</span>
+                            </div>
+                        </div>
+                        <button class="vlog-options-btn" data-toast="Opções da publicação">•••</button>
+                    </div>
+
+                    <div class="vlog-post-body">
+                        <p>Resumo de como foram as nossas últimas 48 horas no hackathon universitário. Muita cafeína, código e criatividade. ☕💻 <span class="post-tag">#HackathonAO</span> <span class="post-tag">#DevLife</span></p>
+                    </div>
+
+                    <div class="vlog-media-container">
+                        <div class="vlog-video-preview" style="background: linear-gradient(135deg, #1e1b4b, #312e81);">
+                            <span class="vlog-badge-duration">01:15</span>
+                            <div class="vlog-play-center-btn" data-toast="A reproduzir vlog do hackathon">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="vlog-post-actions-bar">
+                        <button class="action-btn like-btn" data-likes="830">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            <span class="count">830</span>
+                        </button>
+                        <button class="action-btn comment-toggle-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            <span>45</span>
+                        </button>
+                        <button class="action-btn" data-toast="Link partilhado">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                            <span>Partilhar</span>
+                        </button>
+                        <button class="action-btn bookmark-btn" data-toast="Guardado">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                        </button>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- COLUNA DIREITA: SUGESTÕES DE SEGUIR E COMUNIDADES -->
+            <aside class="feed-sidebar-right" id="creators">
+                <div class="sidebar-widget creators-widget">
+                    <h3> Estudantes em Destaque</h3>
+                    
+                    <div class="creator-mini-card">
+                        <div class="creator-info-flex">
+                            <div class="mini-avatar" style="background: linear-gradient(135deg, #ec4899, #be185d);">MA</div>
+                            <div>
+                                <h5>Maria Alves</h5>
+                                <small>Design & UX · 3.4K seguidores</small>
+                            </div>
+                        </div>
+                        <button class="btn-follow-mini" data-toast="Agora estás a seguir a Maria Alves">Seguir</button>
+                    </div>
+
+                    <div class="creator-mini-card">
+                        <div class="creator-info-flex">
+                            <div class="mini-avatar" style="background: linear-gradient(135deg, #10b981, #047857);">IC</div>
+                            <div>
+                                <h5>Inês Costa</h5>
+                                <small>Medicina · 5.1K seguidores</small>
+                            </div>
+                        </div>
+                        <button class="btn-follow-mini" data-toast="Agora estás a seguir a Inês Costa">Seguir</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget audio-highlight-widget" id="audio">
+                    <h3>♫ Áudio em Alta</h3>
+                    <div class="audio-mini-row" data-toast="A reproduzir batida Lo-Fi Campus">
+                        <div class="audio-mini-cover">▶</div>
+                        <div class="audio-mini-info">
+                            <strong>Lo-Fi Campus Beats</strong>
+                            <small>Study Session · 12.8K vlogs</small>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- NOTIFICAÇÃO TOAST FLUTUANTE -->
+    <div class="toast-notification" id="toastNotification"></div>
+
+    <script src="/js/vlogstudentes.js"></script>
+    <script src="/js/core.js"></script>
+</body>
+</html>

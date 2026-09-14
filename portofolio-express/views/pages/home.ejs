@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/home.css">
+    
+</head>
+<body>
+
+    <div class="ambient-purple-glow-1"></div>
+    <div class="ambient-purple-glow-2"></div>
+    <div class="ambient-purple-glow-3"></div>
+
+    <!-- HEADER -->
+    <header>
+        <a href="/" class="logo-hurk">
+            <img src="/images/logo.png" alt="Augusto Neves Logo" onerror="this.style.display='none'">
+        </a>
+        <ul class="nav-menu">
+            <li><a href="/" class="<%= activePage === 'home' ? 'active' : '' %>">Início</a></li>
+            <li><a href="/projetos" class="<%= activePage === 'projects' ? 'active' : '' %>">Projectos <span class="nav-badge">12</span></a></li>
+            <li><a href="https://renovaluz.ao/">Renovaluz</a></li>
+            <li><a href="https://metarlugias.onrender.com/">Metarlugias</a></li>
+            <li><a href="/rentflow">Rentflow</a></li>
+            <li><a href="/contactos" class="<%= activePage === 'contacts' ? 'active' : '' %>">Contactos</a></li>
+        </ul>
+        <div class="menu-hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-fullscreen-stamp">
+        <div class="hero-bg-slide active" style="background-image: url('/images/fundo.png');"></div>
+        <div class="hero-bg-slide" style="background-image: url('/images/fundo1.png');"></div>
+        <div class="hero-bg-slide" style="background-image: url('/images/fundo2.png');"></div>
+        <div class="hero-bg-slide" style="background-image: url('/images/fundo3.png');"></div>
+
+        <div class="hero-bg-overlay"></div>
+
+        <div class="hero-nav-arrow prev" onclick="prevHeroSlide()">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </div>
+        <div class="hero-nav-arrow next" onclick="nextHeroSlide()">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </div>
+
+        <div class="hero-inner-container">
+            <div class="hero-content-grid">
+                <div class="hero-left-side">
+                    <div class="hero-status-badge">Disponível para novos projetos</div>
+                    <div class="vision-tag" id="vision-tag-text">OUR VISION</div>
+                    <h1 id="hero-title-text">
+                        <span class="gradient-line">DESIGN</span>
+                        <span class="outline-text">DIGITAL</span>
+                    </h1>
+                    <p id="hero-desc-text">O nosso hobby é um <strong>design moderno</strong> e conveniente, a chave para uma comunicação bem-sucedida com o cliente. Criamos <strong>experiências digitais</strong> que transformam marcas.</p>
+
+                    <div class="hero-actions-row">
+                        <button class="btn-hero-primary" onclick="document.querySelector('.projects-matrix-section').scrollIntoView({behavior:'smooth'})">
+                            Ver Projectos
+                            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                        <a href="/contactos" class="btn-hero-secondary">
+                            Contactar
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </a>
+                        <button class="btn-hero-play" onclick="nextHeroSlide()" aria-label="Play">
+                            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        </button>
+                    </div>
+
+                    <div class="hero-mini-stats">
+                        <div class="hero-mini-stat">
+                            <span class="num">+125</span>
+                            <span class="lbl">Clientes</span>
+                        </div>
+                        <div class="hero-mini-stat">
+                            <span class="num">+210</span>
+                            <span class="lbl">Projetos</span>
+                        </div>
+                        <div class="hero-mini-stat">
+                            <span class="num">5★</span>
+                            <span class="lbl">Avaliação</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="avatar-area-hero">
+                    <div class="avatar-neon-ring"></div>
+                    <img src="/images/react.png" alt="React" class="float-icon icon-react" onerror="this.style.display='none'">
+                    <img src="/images/ai.png" alt="Illustrator" class="float-icon icon-ai" onerror="this.style.display='none'">
+                    <img src="/images/photo.png" alt="XD" class="float-icon icon-xd" onerror="this.style.display='none'">
+                    <img src="/images/avatar.png" alt="Augusto Neves Avatar" class="model-avatar-img" onerror="this.style.display='none'">
+                    <img src="/images/figma.png" alt="Figma" class="float-icon icon-figma" onerror="this.style.display='none'">
+                    <img src="/images/Bootstrap.png" alt="Next.js" class="float-icon icon-next" onerror="this.style.display='none'">
+                    <img src="/images/xd.png" alt="Bootstrap" class="float-icon icon-bootstrap" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-carousel-controls">
+            <div class="carousel-dot active" onclick="setHeroSlide(0)"></div>
+            <div class="carousel-dot" onclick="setHeroSlide(1)"></div>
+            <div class="carousel-dot" onclick="setHeroSlide(2)"></div>
+            <div class="carousel-dot" onclick="setHeroSlide(3)"></div>
+        </div>
+    </section>
+
+    <!-- FEATURES BAR -->
+    <section class="features-bar-section">
+        <div class="features-bar-inner">
+            <div class="feature-item-inline">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                99.9% uptime
+            </div>
+            <div class="feature-item-inline">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                24/7 support
+            </div>
+            <div class="feature-item-inline">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Pay as you go
+            </div>
+        </div>
+    </section>
+
+    <div class="main-wrapper">
+        <section class="about-hero-section">
+            <div class="avatar-area fade-reveal-left">
+                <div class="avatar-glow"></div>
+                <img src="/images/react.png" alt="React" class="float-icon icon-react" onerror="this.style.display='none'">
+                <img src="/images/ai.png" alt="Illustrator" class="float-icon icon-ai" onerror="this.style.display='none'">
+                <img src="/images/photo.png" alt="XD" class="float-icon icon-xd" onerror="this.style.display='none'">
+                <img src="/images/avatar.png" alt="Augusto Neves Avatar" class="avatar-img" onerror="this.style.display='none'">
+                <img src="/images/figma.png" alt="Figma" class="float-icon icon-figma" onerror="this.style.display='none'">
+                <img src="/images/Bootstrap.png" alt="Next.js" class="float-icon icon-next" onerror="this.style.display='none'">
+                <img src="/images/xd.png" alt="Bootstrap" class="float-icon icon-bootstrap" onerror="this.style.display='none'">
+            </div>
+
+            <div class="about-text-content fade-reveal-right">
+                <h1>Sobre <span>Mim</span></h1>
+                <p>Sou um <strong>Designer UX/UI e Programador Full Stack</strong> com uma excelente atenção ao detalhe, que dá vida à criatividade. Sou designer há mais de 3 anos e já trabalhei com muitos clientes de diferentes escalas.</p>
+                <p>Especializei-me no desenvolvimento de excelentes designs de UI para <strong>e-commerce</strong>, serviços web online (Web apps/SaaS), websites corporativos e landing pages de conversão.</p>
+            </div>
+        </section>
+
+        <!-- STATS, SKILLS & INTERESTS -->
+        <section class="stats-skills-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="stat-number" data-target="125">0</div>
+                    <div class="stat-label">Clientes Satisfeitos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <div class="stat-number" data-target="210">0</div>
+                    <div class="stat-label">Projetos Entregues</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="stat-number" data-target="1463">0</div>
+                    <div class="stat-label">Horas de Suporte</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    </div>
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+            </div>
+
+            <div class="section-header-sm">
+                <div class="tag">Habilidades</div>
+                <h3>Minhas Habilidades</h3>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-item" data-skill="95">
+                    <div class="skill-info">
+                        <span class="skill-name">React</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item" data-skill="85">
+                    <div class="skill-info">
+                        <span class="skill-name">Vue.js</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item" data-skill="90">
+                    <div class="skill-info">
+                        <span class="skill-name">Node.js</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item" data-skill="95">
+                    <div class="skill-info">
+                        <span class="skill-name">Sass</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item" data-skill="80">
+                    <div class="skill-info">
+                        <span class="skill-name">Angular</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item" data-skill="90">
+                    <div class="skill-info">
+                        <span class="skill-name">TypeScript</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar-bg">
+                        <div class="skill-bar-fill" data-width="90"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header-sm">
+                <div class="tag">Foco e Especialidades</div>
+                <h3>Tenho Interesse em</h3>
+            </div>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                    </div>
+                    <span class="interest-label">UI/UX Design</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <span class="interest-label">Desenvolvimento Web</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    </div>
+                    <span class="interest-label">Desenvolvimento Mobile</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                    </div>
+                    <span class="interest-label">Design Gráfico</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <span class="interest-label">Front-end Avançado</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"></path><path d="M2 20h20"></path><circle cx="12" cy="10" r="2"></circle></svg>
+                    </div>
+                    <span class="interest-label">Back-end & APIs</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <span class="interest-label">Prototipagem Ágil</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    </div>
+                    <span class="interest-label">Identidade Visual</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    </div>
+                    <span class="interest-label">Arquitetura de Software</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <span class="interest-label">Sistemas de Design</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    </div>
+                    <span class="interest-label">Web Performance</span>
+                </div>
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <span class="interest-label">Soluções Inovadoras</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="main-wrapper">
+        <section class="services-heading-area">
+            <div class="bg-watermark">SERVIÇOS</div>
+            <div class="specialization-tag">Minha Especialização</div>
+            <h2>Serviços Que Presto</h2>
+        </section>
+    </div>
+
+    <div class="services-grid-static">
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>UI/UX Design</h3>
+                        <p>Interfaces intuitivas, consistentes e de alta conversão para produtos digitais modernos.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work1.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>UI/UX Design</h4>
+                        <p>Focado em usabilidade e estética impecável. Criamos fluxos de navegação transparentes que reduzem o atrito e geram retenção imediata.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>Design de SaaS</h3>
+                        <p>Dashboards dinâmicos, onboarding interativo e métricas simplificadas.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work2.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>Design de SaaS</h4>
+                        <p>Transformamos dados complexos em painéis limpos e acionáveis, garantindo que o seu software seja simples de escalar e agradável de usar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>Design de Websites</h3>
+                        <p>Sites institucionais e landing pages de alta performance otimizadas para conversão.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>Design de Websites</h4>
+                        <p>Arquitetura visual imersiva projetada para transformar visitantes casuais em clientes fieis, unindo velocidade, tipografia rica e interações fluidas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>Design Mobile</h3>
+                        <p>Aplicações iOS e Android com interações nativas e animações de vanguarda.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work4.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>Design Mobile</h4>
+                        <p>Experiências móveis desenhadas especificamente para reter o utilizador, priorizando o toque, padrões de gestos e micro-interações cativantes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>Design System</h3>
+                        <p>Sistemas de design escaláveis para manter a harmonia visual em todo o ecossistema.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work5.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>Design System</h4>
+                        <p>Componentes reutilizáveis, documentação robusta e tokens padronizados para acelerar o desenvolvimento e unificar a identidade do seu produto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>Wireframing</h3>
+                        <p>Arquitetura de informação e protótipos de validação rápida para o mercado.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work6.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>Wireframing</h4>
+                        <p>Estruturação lógica de ecrãs e fluxos do utilizador, permitindo testar hipóteses e alinhar estratégias antes de avançar para o design visual.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>Identidade Visual</h3>
+                        <p>Branding estratégico e memorável para destacar a marca no ecossistema digital.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work1.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>Identidade Visual</h4>
+                        <p>Marcas com personalidade forte e propósito claro. Desenvolvemos logótipos, paletas e directrizes visuais que geram conexões duradouras.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card-wrapper">
+            <div class="service-card-3d">
+                <div class="card-face card-front">
+                    <div class="service-icon-top">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <div class="card-front-content">
+                        <h3>Web App Design</h3>
+                        <p>Aplicações web robustas com foco em produtividade, performance e eficiência.</p>
+                        <span class="card-hint">Ver Detalhes ⇻</span>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <img src="/images/work2.png" alt="" class="card-back-bg" onerror="this.style.display='none'">
+                    <div class="glass-description-box">
+                        <h4>Web App Design</h4>
+                        <p>Sistemas complexos traduzidos em interfaces limpas. Otimizamos cada fluxo para que utilizadores realizem tarefas pesadas com extrema facilidade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CURRÍCULO ===== -->
+    <div class="cv-section-wrapper">
+        <div class="cv-header">
+            <h2>O Meu <span>Currículo</span></h2>
+            <p>Uma visão detalhada da minha jornada profissional, formação académica e competências técnicas acumuladas ao longo dos anos.</p>
+        </div>
+
+        <div class="cv-matrix-grid">
+
+            <div class="cv-block">
+                <div class="cv-block-header">
+                    <div class="cv-block-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div class="cv-block-title">Resumo Profissional</div>
+                </div>
+                <div class="cv-block-body">
+                    <div class="cv-name-card">
+                        <div class="cv-name-title">Augusto Neves</div>
+                        <div class="cv-name-role">Designer UX/UI & Programador Full Stack</div>
+                    </div>
+                    <p class="cv-summary-text">Profissional criativo e orientado a resultados, com mais de 5 anos de experiência como Desenvolvedor Full Stack e mais de 3 anos como Designer Gráfico. Especializado em criar soluções digitais inovadoras, desde a conceção visual até à implementação técnica, sempre com foco na experiência do utilizador e na excelência do produto final.</p>
+                    <div class="cv-info-list">
+                        <div class="cv-info-item">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            Dundo, Lunda Norte, Angola
+                        </div>
+                        <div class="cv-info-item">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            +244 923 456 789
+                        </div>
+                        <div class="cv-info-item">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            augustoneve22@gmail.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-block">
+                <div class="cv-block-header">
+                    <div class="cv-block-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <div class="cv-block-title">Experiência Profissional</div>
+                </div>
+                <div class="cv-block-body">
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-date">2020 - Presente</div>
+                        <div class="cv-timeline-title">Desenvolvedor Full Stack Sénior</div>
+                        <div class="cv-timeline-subtitle">Freelancer / Remoto</div>
+                        <p class="cv-timeline-desc">Desenvolvimento de aplicações web completas, desde a arquitetura backend até à interface frontend. Trabalho com React, Node.js, TypeScript e bases de dados SQL/NoSQL para clientes nacionais e internacionais.</p>
+                    </div>
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-date">2019 - 2020</div>
+                        <div class="cv-timeline-title">Designer Gráfico & UI Designer</div>
+                        <div class="cv-timeline-subtitle">Estúdio Criativo / Angola</div>
+                        <p class="cv-timeline-desc">Criação de identidades visuais, artes digitais de alto impacto e interfaces de utilizador para startups e empresas estabelecidas. Desenvolvimento de sistemas de design e materiais de marketing digital.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-block">
+                <div class="cv-block-header">
+                    <div class="cv-block-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    </div>
+                    <div class="cv-block-title">Formação Académica</div>
+                </div>
+                <div class="cv-block-body">
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-date">Presente</div>
+                        <div class="cv-timeline-title">Engenharia Informática</div>
+                        <div class="cv-timeline-subtitle">ISPTEC - Instituto Superior Politécnico de Tecnologias e Ciências</div>
+                        <p class="cv-timeline-desc">Atualmente a frequentar o 3º ano do curso de Engenharia Informática, com foco em desenvolvimento de software, arquitetura de sistemas e inteligência artificial.</p>
+                    </div>
+                    <div class="cv-timeline-item">
+                        <div class="cv-timeline-date">Concluído</div>
+                        <div class="cv-timeline-title">Curso Técnico de Informática</div>
+                        <div class="cv-timeline-subtitle">Instituto Médio Politécnico 28 de Agosto - Dundo</div>
+                        <p class="cv-timeline-desc">Formação técnica em Informática com ênfase em programação, redes de computadores e sistemas operativos. Base sólida para o desenvolvimento de software moderno.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cv-block">
+                <div class="cv-block-header">
+                    <div class="cv-block-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path></svg>
+                    </div>
+                    <div class="cv-block-title">Certificações</div>
+                </div>
+                <div class="cv-block-body">
+                    <div class="cv-cert-item">
+                        <div class="cv-cert-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <div class="cv-cert-info">
+                            <div class="cv-cert-title">Certificação em Cibersegurança</div>
+                            <div class="cv-cert-issuer">IBSEC - Instituto Brasileiro de Segurança Cibernética</div>
+                        </div>
+                    </div>
+                    <div class="cv-cert-item">
+                        <div class="cv-cert-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                        </div>
+                        <div class="cv-cert-info">
+                            <div class="cv-cert-title">Red Team & Pentester</div>
+                            <div class="cv-cert-issuer">Red Team Brasil</div>
+                        </div>
+                    </div>
+                    <div class="cv-cert-item">
+                        <div class="cv-cert-icon">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        </div>
+                        <div class="cv-cert-info">
+                            <div class="cv-cert-title">Analista de Sistemas & Pentest</div>
+                            <div class="cv-cert-issuer">Segurança com Kali Linux</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bottom-marquee">
+        <div class="marquee-content">
+            <span>
+                Web Design &nbsp;&nbsp;—&nbsp;&nbsp; App Design &nbsp;&nbsp;—&nbsp;&nbsp; Dashboard &nbsp;&nbsp;—&nbsp;&nbsp; Wireframe &nbsp;&nbsp;—&nbsp;&nbsp;
+                Web Design &nbsp;&nbsp;—&nbsp;&nbsp; App Design &nbsp;&nbsp;—&nbsp;&nbsp; Dashboard &nbsp;&nbsp;—&nbsp;&nbsp; Wireframe &nbsp;&nbsp;—&nbsp;&nbsp;
+            </span>
+            <span>
+                Web Design &nbsp;&nbsp;—&nbsp;&nbsp; App Design &nbsp;&nbsp;—&nbsp;&nbsp; Dashboard &nbsp;&nbsp;—&nbsp;&nbsp; Wireframe &nbsp;&nbsp;—&nbsp;&nbsp;
+                Web Design &nbsp;&nbsp;—&nbsp;&nbsp; App Design &nbsp;&nbsp;—&nbsp;&nbsp; Dashboard &nbsp;&nbsp;—&nbsp;&nbsp; Wireframe &nbsp;&nbsp;—&nbsp;&nbsp;
+            </span>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+        <section class="projects-matrix-section">
+            <div class="projects-header">
+                <h2>Os Meus <span>Projetos</span></h2>
+                <p>Uma seleção dos meus trabalhos mais recentes. Cada projeto foi construído com atenção obsessiva ao detalhe, performance e experiência do utilizador.</p>
+            </div>
+
+            <div class="projects-grid-6">
+
+                <a href="/vlogstudents" class="project-card">
+                    <img src="/images/sass.png" alt="Vlog Students" class="project-card-image" onerror="this.style.display='none'">
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-overlay"></div>
+                    <div class="project-card-content">
+                        <span class="project-card-number">01 / SOCIAL</span>
+                        <h3 class="project-card-name">Vlog Students</h3>
+                        <span class="project-card-cta">
+                            Ver Projecto
+                            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="/branding" class="project-card">
+                    <img src="/images/sass.png" alt="Social Mídia" class="project-card-image" onerror="this.style.display='none'">
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-overlay"></div>
+                    <div class="project-card-content">
+                        <span class="project-card-number">02 / CREATIVE</span>
+                        <h3 class="project-card-name">Social Mídia</h3>
+                        <span class="project-card-cta">
+                            Ver Projecto
+                            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </div>
+                </a>
+
+                 <a href="/aotravel" class="project-card">
+                    <img src="/images/sass.png" alt="Ao Travel" class="project-card-image" onerror="this.style.display='none'">
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-overlay"></div>
+                    <div class="project-card-content">
+                        <span class="project-card-number">03 / TRAVEL</span>
+                        <h3 class="project-card-name">Ao Travel</h3>
+                        <span class="project-card-cta">
+                            Ver Projecto
+                            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="/rentflow" class="project-card">
+                    <img src="/images/sass.png" alt="RentFlow" class="project-card-image" onerror="this.style.display='none'">
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-overlay"></div>
+                    <div class="project-card-content">
+                        <span class="project-card-number">04 / LUXURY</span>
+                        <h3 class="project-card-name">RentFlow</h3>
+                        <span class="project-card-cta">
+                            Ver Projecto
+                            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="/studio" class="project-card">
+                    <img src="/images/sass.png" alt="Joker Studio" class="project-card-image" onerror="this.style.display='none'">
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-overlay"></div>
+                    <div class="project-card-content">
+                        <span class="project-card-number">05 / CLOUD</span>
+                        <h3 class="project-card-name">Joker Studio</h3>
+                        <span class="project-card-cta">
+                            Ver Projecto
+                            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <a href="/stand" class="project-card">
+                    <img src="/images/sass.png" alt="Stand Filllo" class="project-card-image" onerror="this.style.display='none'">
+                    <div class="project-card-glow"></div>
+                    <div class="project-card-overlay"></div>
+                    <div class="project-card-content">
+                        <span class="project-card-number">06 / AUTO</span>
+                        <h3 class="project-card-name">Stand Filllo</h3>
+                        <span class="project-card-cta">
+                            Ver Projecto
+                            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+    </div>
+
+    <div class="pills-cloud">
+        <span class="pill p1">Design System</span>
+        <span class="pill purple p2">Protótipo</span>
+        <span class="pill p3">Mobile App Design</span>
+        <span class="pill p4">Wireframe Design</span>
+        <span class="pill p5">Website Design</span>
+        <span class="pill purple p6">Ilustração</span>
+        <span class="pill p7">UX/UI Design</span>
+        <span class="pill p8">Identidade Visual</span>
+        <span class="pill p9">Landing Page</span>
+        <span class="pill purple p10">Dashboard</span>
+        <span class="pill p11">UI Design</span>
+        <span class="pill p12">Product Design</span>
+        <span class="pill p13">Brand Identity</span>
+    </div>
+
+    <div class="main-wrapper">
+        <section class="plans-section-wrapper">
+            <div class="plans-header">
+                <h2>Investimento & <span>Planos</span></h2>
+                <p>Escolha o plano ideal para transformar a presença digital da sua empresa com design de elite e engenharia de ponta.</p>
+            </div>
+
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div>
+                        <div class="plan-icon-3d-wrapper">
+                            <div class="plan-icon-neon-ring"></div>
+                            <div class="plan-icon-neon-ring-inner"></div>
+                            <div class="plan-icon-3d-inner">
+                                <img src="/images/figma.png" alt="Starter" class="plan-icon-3d-img" onerror="this.style.display='none'">
+                            </div>
+                        </div>
+                        <div class="plan-price-block">
+                            <span class="plan-price-currency">Kwanza / Mês</span>
+                            <div class="plan-price-value">
+                                <span class="plan-price-number" data-price="350">350</span>
+                                <span class="plan-price-period">Mil</span>
+                            </div>
+                            <div class="plan-price-divider"></div>
+                        </div>
+                        <div class="plan-card-body">
+                            <h3>Starter Design</h3>
+                            <p>Ideal para startups e projetos pessoais.</p>
+                            <ul class="plan-features-list">
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Landing Page única</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Design responsivo</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> 2 revisões incluídas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="/contactos" class="btn-plan-action">
+                        Contratar
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+
+                <div class="plan-card featured-card">
+                    <div class="featured-badge">Mais Popular</div>
+                    <div>
+                        <div class="plan-icon-3d-wrapper">
+                            <div class="plan-icon-neon-ring"></div>
+                            <div class="plan-icon-neon-ring-inner"></div>
+                            <div class="plan-icon-3d-inner">
+                                <img src="/images/react.png" alt="Professional" class="plan-icon-3d-img" onerror="this.style.display='none'">
+                            </div>
+                        </div>
+                        <div class="plan-price-block">
+                            <span class="plan-price-currency">Kwanza / Mês</span>
+                            <div class="plan-price-value">
+                                <span class="plan-price-number" data-price="650">650</span>
+                                <span class="plan-price-period">Mil</span>
+                            </div>
+                            <div class="plan-price-divider"></div>
+                        </div>
+                        <div class="plan-card-body">
+                            <h3>Professional Suite</h3>
+                            <p>Solução completa para dominar o mercado.</p>
+                            <ul class="plan-features-list">
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Website completo</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Design System exclusivo</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Revisões ilimitadas</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Suporte prioritário 24/7</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="/contactos" class="btn-plan-action">
+                        Contratar Pro
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+
+                <div class="plan-card">
+                    <div>
+                        <div class="plan-icon-3d-wrapper">
+                            <div class="plan-icon-neon-ring"></div>
+                            <div class="plan-icon-neon-ring-inner"></div>
+                            <div class="plan-icon-3d-inner">
+                                <img src="/images/ai.png" alt="Business" class="plan-icon-3d-img" onerror="this.style.display='none'">
+                            </div>
+                        </div>
+                        <div class="plan-price-block">
+                            <span class="plan-price-currency">Kwanza / Mês</span>
+                            <div class="plan-price-value">
+                                <span class="plan-price-number" data-price="450">450</span>
+                                <span class="plan-price-period">Mil</span>
+                            </div>
+                            <div class="plan-price-divider"></div>
+                        </div>
+                        <div class="plan-card-body">
+                            <h3>Business Identity</h3>
+                            <p>Identidade visual completa e estratégica.</p>
+                            <ul class="plan-features-list">
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Logótipo profissional</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Manual de marca</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Paleta de cores</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="/contactos" class="btn-plan-action">
+                        Contratar
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+
+                <div class="plan-card">
+                    <div>
+                        <div class="plan-icon-3d-wrapper">
+                            <div class="plan-icon-neon-ring"></div>
+                            <div class="plan-icon-neon-ring-inner"></div>
+                            <div class="plan-icon-3d-inner">
+                                <img src="/images/Bootstrap.png" alt="Enterprise" class="plan-icon-3d-img" onerror="this.style.display='none'">
+                            </div>
+                        </div>
+                        <div class="plan-price-block">
+                            <span class="plan-price-currency">Kwanza / Mês</span>
+                            <div class="plan-price-value">
+                                <span class="plan-price-number" data-price="950">950</span>
+                                <span class="plan-price-period">Mil</span>
+                            </div>
+                            <div class="plan-price-divider"></div>
+                        </div>
+                        <div class="plan-card-body">
+                            <h3>Enterprise Elite</h3>
+                            <p>Solução ultra-premium para grandes empresas.</p>
+                            <ul class="plan-features-list">
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Tudo do Professional</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Web App completa</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Consultoria dedicada</li>
+                                <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Gestor de conta</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="/contactos" class="btn-plan-action">
+                        Contratar Elite
+                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="main-wrapper">
+        <section class="footer-heading-area">
+            <div class="contact-watermark">CONTACTO</div>
+            <div class="specialization-tag" style="margin-bottom: 8px;">Contacto</div>
+            <h2>Vamos Conversar Sobre<br><span>Seu Próximo Projeto</span></h2>
+        </section>
+
+        <div class="contact-form-container">
+            <form action="/contactos" method="POST">
+                <input type="text" name="honeypot" style="display:none" tabindex="-1" autocomplete="off">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Seu Nome <span>*</span></label>
+                        <input type="text" name="firstName" class="form-control" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span>*</span></label>
+                        <input type="email" name="email" class="form-control" required placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label>Morada / Endereço <span>*</span></label>
+                        <input type="text" name="address" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="btn-hero-primary">Enviar Mensagem</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-supreme-container">
+        <div class="download-banner-card">
+            <div class="banner-decor-left"></div>
+            <div class="banner-decor-right"></div>
+            <div class="banner-inner-content">
+                <h2>Baixar Joker UI Brevemente</h2>
+                <p>Aproveite ao máximo o seu tempo livre e comece a ganhar prémios!</p>
+                <div class="store-badges-row">
+                    <a href="https://play.google.com" target="_blank" class="store-badge-btn">
+                        <img src="/images/googleplay.png" alt="Google Play" onerror="this.style.display='none'">
+                        <div class="store-text-info">
+                            <span class="small-txt">Descarregar em</span>
+                            <span class="store-name">Google Play</span>
+                        </div>
+                    </a>
+                    <a href="https://apple.com/app-store" target="_blank" class="store-badge-btn">
+                        <img src="/images/app.png" alt="App Store" onerror="this.style.display='none'">
+                        <div class="store-text-info">
+                            <span class="small-txt">Descarregar na</span>
+                            <span class="store-name">App Store</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="banner-stats-grid">
+                    <div class="stat-box"><h3>+4K</h3><p>Utilizadores Registados</p></div>
+                    <div class="stat-box"><h3>+2K</h3><p>Projetos Criados</p></div>
+                    <div class="stat-box"><h3>+5K</h3><p>Participações Totais</p></div>
+                    <div class="stat-box"><h3>+10K</h3><p>Prémios Atribuídos</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-grid">
+            <div class="footer-col-brand">
+                <div class="footer-logo-area">
+                    <img src="/images/favicon.png" alt="Logo" onerror="this.style.display='none'">
+                    Joker UI
+                </div>
+                <p>Utilize o seu tempo livre com a Joker UI e ganhe recompensas ao concluir várias missões e projetos.</p>
+                <div class="footer-social-row">
+                <a href="https://www.facebook.com/denyneves.francisco/" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                <a href="https://www.instagram.com/denyitachi14/" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l11.733 16h4.267l-11.733 -16zM4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg></a>
+                <a href="https://www.linkedin.com/in/augusto-neves-134271369/" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                <a href="https://www.youtube.com/@NerdsAI-b9l" target="_blank" rel="noopener noreferrer" class="social-circle-link" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#ffffff" stroke="none"></polygon></svg></a>
+            </div>
+            </div>
+
+            <div class="footer-nav-col">
+                <h4>Explorar</h4>
+                <ul>
+                    <li><a href="/">Início</a></li>
+                    <li><a href="/projetos">Projetos</a></li>
+                    <li><a href="/contactos">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-nav-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/acordo">Acordo de Utilizador</a></li>
+                    <li><a href="/politic">Política de Privacidade</a></li>
+                    <li><a href="/cookies">Política de Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-final-bar">
+            <p>© <span id="current-year"></span> JOKER UI TECHNOLOGIES. Todos os direitos reservados.</p>
+            <a href="mailto:augustoneve22@gmail.com" class="support-email-link">
+                ✉ augustoneve22@gmail.com
+            </a>
+        </div>
+    </div>
+
+   
+<script src="/js/home.js"></script>
+<script src="/js/core.js"></script>
+</body>
+</html>

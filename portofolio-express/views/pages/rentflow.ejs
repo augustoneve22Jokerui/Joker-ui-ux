@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <meta name="description" content="Plataforma premium de aluguer de veículos de luxo e desportivos. Simples, rápido e seguro.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/rentflow.css">
+    
+</head>
+<body class="exact-reference-body">
+
+    <a href="#main-content" class="skip-link">Saltar para o conteúdo principal</a>
+
+    <div class="reference-viewport-wrapper">
+        
+        <header class="reference-header">
+            <div class="reference-nav-container">
+                <a class="reference-logo" href="/">
+                    <span>rent</span><span class="logo-dot">f</span>low
+                </a>
+
+                <nav class="reference-nav-menu" aria-label="Navegação principal">
+                    <a href="#inicio" class="ref-nav-item active">Início</a>
+                    <a href="#carros" class="ref-nav-item">Carros</a>
+                    <a href="#servicos" class="ref-nav-item">Nossos Serviços</a>
+                </nav>
+
+                <div class="reference-nav-action d-flex align-items-center gap-3">
+                    <button class="theme-toggle-btn" id="themeToggle" aria-label="Alternar modo claro e escuro" title="Alternar tema">
+                        <i class="bi bi-sun-fill sun-icon"></i>
+                        <i class="bi bi-moon-fill moon-icon"></i>
+                    </button>
+                    <a href="/contactos" class="btn-contact-pill">Contactar</a>
+                </div>
+            </div>
+        </header>
+
+        <main id="main-content" class="reference-main-hero">
+            
+            <div class="ref-hero-left">
+                <div class="ref-stats-group">
+                    <div class="ref-stat-block">
+                        <div class="ref-stat-number">100<span class="ref-accent">+</span></div>
+                        <div class="ref-stat-label">Tipos de máquinas</div>
+                    </div>
+                    <div class="ref-stat-block">
+                        <div class="ref-stat-number">20k<span class="ref-accent">+</span></div>
+                        <div class="ref-stat-label">Clientes atendidos</div>
+                    </div>
+                </div>
+
+                <div class="ref-appstore-box d-flex flex-column gap-3">
+                    <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer" class="ref-appstore-link">
+                        <div class="ref-apple-icon">
+                            <i class="bi bi-apple"></i>
+                        </div>
+                        <div class="ref-appstore-texts">
+                            <span class="ref-app-sub">Disponível na</span>
+                            <span class="ref-app-main">App Store</span>
+                        </div>
+                    </a>
+                    <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" class="ref-appstore-link">
+                        <div class="ref-apple-icon">
+                            <i class="bi bi-google-play"></i>
+                        </div>
+                        <div class="ref-appstore-texts">
+                            <span class="ref-app-sub">Disponível no</span>
+                            <span class="ref-app-main">Google Play</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ref-hero-center">
+                <div class="ref-title-box">
+                    <h1 class="ref-main-title">Explore agora</h1>
+                </div>
+
+                <div class="ref-car-stage-wrapper">
+                    <button type="button" class="ref-car-nav-btn ref-prev-btn" id="prevCarBtn" aria-label="Carro anterior">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
+
+                    <div class="ref-car-image-container">
+                        <div class="ref-car-glow"></div>
+                        <img src="/images/cars/car-01.webp" alt="McLaren Supercar" class="ref-hero-car" id="heroCarImage">
+                        <div class="ref-headlight-flare"></div>
+                    </div>
+
+                    <button type="button" class="ref-car-nav-btn ref-next-btn" id="nextCarBtn" aria-label="Próximo carro">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="ref-cta-wrapper">
+                    <a href="#catalogo" class="ref-btn-open-catalog" id="openCatalogBtn">
+                        Abrir Catálogo
+                    </a>
+                </div>
+
+                <div class="ref-scroll-indicator">
+                    <div class="ref-mouse-shape">
+                        <div class="ref-mouse-wheel"></div>
+                    </div>
+                    <div class="ref-scroll-arrows-down">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ref-hero-right">
+                <div class="ref-description-box">
+                    <p class="ref-desc-text" id="heroCarDescription">
+                        Queremos que tenha uma experiência de aluguer sem stress, tornando simples alugar um carro — através de ferramentas de pesquisa fáceis, avaliações de clientes e vários locais de levantamento em Luanda e Talatona.
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+        <div class="ref-search-dock-wrapper">
+            <div class="ref-search-dock-card">
+                <form id="searchForm" class="ref-search-form">
+                    
+                    <div class="ref-search-field dropdown" data-bs-toggle="dropdown" aria-expanded="false" id="locationDropdownToggle">
+                        <div class="ref-search-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <div class="ref-search-inputs-wrap">
+                            <span class="ref-field-label">Escolha a localização</span>
+                            <span class="ref-field-value" id="selectedLocationText">Talatona, Luanda</span>
+                        </div>
+                        <div class="ref-field-arrow">
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <ul class="dropdown-menu custom-dropdown-menu shadow-lg border-0 py-2" aria-labelledby="locationDropdownToggle">
+                            <li><a class="dropdown-item location-option py-2 px-3 active" href="#" data-value="Talatona, Luanda">Talatona, Luanda</a></li>
+                            <li><a class="dropdown-item location-option py-2 px-3" href="#" data-value="Luanda Centro">Luanda Centro</a></li>
+                            <li><a class="dropdown-item location-option py-2 px-3" href="#" data-value="Kilamba, Luanda">Kilamba, Luanda</a></li>
+                            <li><a class="dropdown-item location-option py-2 px-3" href="#" data-value="Benfica, Luanda">Benfica, Luanda</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="ref-search-separator"></div>
+
+                    <div class="ref-search-field" onclick="document.getElementById('pickUpDateInput').showPicker()">
+                        <div class="ref-search-icon">
+                            <i class="bi bi-calendar-event"></i>
+                        </div>
+                        <div class="ref-search-inputs-wrap">
+                            <label for="pickUpDateInput" class="ref-field-label mb-0 cursor-pointer">Data de retirada</label>
+                            <input type="datetime-local" id="pickUpDateInput" class="ref-datetime-native w-100 border-0 bg-transparent shadow-none" required>
+                        </div>
+                        <div class="ref-field-arrow">
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="ref-search-separator"></div>
+
+                    <div class="ref-search-field" onclick="document.getElementById('returnDateInput').showPicker()">
+                        <div class="ref-search-icon">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <div class="ref-search-inputs-wrap">
+                            <label for="returnDateInput" class="ref-field-label mb-0 cursor-pointer">Data de devolução</label>
+                            <input type="datetime-local" id="returnDateInput" class="ref-datetime-native w-100 border-0 bg-transparent shadow-none" required>
+                        </div>
+                        <div class="ref-field-arrow">
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="ref-search-action-btn-wrap">
+                        <button type="submit" class="ref-btn-search">
+                            <div class="ref-search-btn-icon">
+                                <i class="bi bi-search"></i>
+                            </div>
+                            <span>Pesquisar</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <footer class="text-center py-3 position-relative z-3">
+            <p class="text-muted small mb-0" style="letter-spacing: 0.05em; opacity: 0.7;">
+                Crafted with excellence by <strong class="text-accent" style="color: var(--accent-color);">denyneves</strong>
+            </p>
+        </footer>
+
+    </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+        <div id="systemToast" class="toast align-items-center text-white border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-2" id="toastMessage">
+                    <i class="bi bi-check-circle-fill fs-5"></i>
+                    <span>Operação realizada com sucesso!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto shadow-none" data-bs-dismiss="toast" aria-label="Fechar"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/js/rentflow.js"></script>
+    <script src="/js/core.js"></script>
+</body>
+</html>

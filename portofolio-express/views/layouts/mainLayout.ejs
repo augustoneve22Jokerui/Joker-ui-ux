@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <%- include('../partials/head') %>
+    <% if (typeof additionalStyles !== 'undefined') { %>
+        <link rel="stylesheet" href="<%= additionalStyles %>">
+    <% } %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+    <% if (typeof additionalScripts !== 'undefined') { %>
+        <script src="<%= additionalScripts %>"></script>
+    <% } %>
+</body>
+</html>
