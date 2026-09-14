@@ -1,0 +1,526 @@
+
+    :root {
+        --fillo-blue: #3b50f6;
+        --fillo-dark: #0b0f19;
+        --fillo-bg: #f4f6f9;
+        --text-dark: #1e293b;
+        --text-muted: #64748b;
+        --border-light: #e2e8f0;
+        --card-subtle: #f8fafc;
+        --font-family: 'Poppins', sans-serif;
+
+        --primary-bg: #0b0f19;
+        --main-bg: #f8f9fa;
+        --card-bg: #ffffff;
+        --text-main: #111827;
+        --brand-blue: #3b55ff;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body.fillo-app-body {
+        font-family: var(--font-family);
+        background-color: var(--fillo-bg);
+        color: var(--text-dark);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .fillo-navbar-header {
+        background-color: var(--fillo-dark);
+        position: sticky;
+        top: 0;
+        z-index: 1050;
+    }
+
+    .fillo-brand-icon {
+        width: 36px;
+        height: 36px;
+        background-color: var(--fillo-blue);
+        border-radius: 10px;
+        font-size: 1.1rem;
+    }
+
+    .fillo-brand-name {
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1.25rem;
+        letter-spacing: -0.5px;
+    }
+
+    .navbar-nav .nav-link {
+        color: #94a3b8 !important;
+        font-size: 0.9rem;
+        font-weight: 400;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .fillo-nav-badge {
+        background-color: #22c55e;
+        color: #ffffff;
+        font-size: 0.65rem;
+        padding: 1px 6px;
+        border-radius: 10px;
+        font-weight: 600;
+        margin-left: 4px;
+        vertical-align: middle;
+    }
+
+    .fillo-circle-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: #1e293b;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .fillo-circle-btn:hover {
+        background-color: #334155;
+    }
+
+    .fillo-notification-dot {
+        position: absolute;
+        top: 9px;
+        right: 10px;
+        width: 7px;
+        height: 7px;
+        background-color: #ef4444;
+        border-radius: 50%;
+        border: 1px solid var(--fillo-dark);
+    }
+
+    .fillo-user-avatar {
+        width: 38px;
+        height: 38px;
+        object-fit: cover;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .hide-caret::after {
+        display: none !important;
+    }
+
+    .fillo-main-wrapper {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+    .fillo-content-box {
+        background-color: #ffffff;
+        border: 1px solid var(--border-light);
+    }
+
+    .navbar-custom {
+        background-color: var(--primary-bg);
+        padding: 16px 50px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .navbar-brand-custom {
+        font-weight: 700;
+        font-size: 24px;
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 4px;
+        border-radius: 30px;
+    }
+
+    .nav-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .nav-links a.active, .nav-links a:hover {
+        background-color: #ffffff;
+        color: var(--primary-bg);
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .btn-circle-green {
+        width: 38px;
+        height: 38px;
+        background-color: #10b981;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .btn-circle-green:hover {
+        transform: scale(1.05);
+    }
+
+    .notification-icon {
+        color: #9ca3af;
+        font-size: 18px;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .notification-icon:hover {
+        color: #fff;
+    }
+
+    .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px 12px 4px 4px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+    }
+
+    .user-profile img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .hero-section {
+        padding: 40px 80px;
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+
+    .hero-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text-main);
+        margin-bottom: 24px;
+    }
+
+    .search-card {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.2fr 1fr auto;
+        gap: 12px;
+        align-items: center;
+        border: 1px solid #f1f3f5;
+    }
+
+    .search-field {
+        padding: 8px 16px;
+        border-right: 1px solid #f1f3f5;
+        cursor: pointer;
+    }
+
+    .search-field:last-of-type {
+        border-right: none;
+    }
+
+    .search-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .search-value {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-main);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-search {
+        background-color: var(--brand-blue);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 16px 32px;
+        font-weight: 600;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-search:hover {
+        background-color: #2f43d4;
+    }
+
+    .btn-search:active {
+        transform: scale(0.98);
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .see-all {
+        color: var(--brand-blue);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: opacity 0.2s;
+    }
+
+    .see-all:hover {
+        opacity: 0.8;
+    }
+
+    .car-card-popular {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 24px;
+        position: relative;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+        border: 1px solid #f1f3f5;
+        overflow: hidden;
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .car-card-popular:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .car-card-popular.gradient-pink {
+        background: linear-gradient(135deg, #fdf4f5 0%, #ffffff 100%);
+    }
+
+    .car-card-popular.gradient-blue {
+        background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+    }
+
+    .car-card-popular.gradient-gray {
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    }
+
+    .badge-status {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background: #ffffff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        color: var(--text-main);
+    }
+
+    .badge-reserved {
+        background-color: #fff1f2;
+        color: #e11d48;
+    }
+
+    .badge-arriving {
+        background-color: #f8fafc;
+        color: #64748b;
+    }
+
+    .car-img-container {
+        text-align: center;
+        margin: 20px 0 30px 0;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .car-img-container img {
+        max-width: 100%;
+        max-height: 140px;
+        object-fit: contain;
+        transition: transform 0.3s;
+    }
+
+    .car-card-popular:hover .car-img-container img,
+    .car-card-collection:hover .car-img-container img {
+        transform: scale(1.05);
+    }
+
+    .car-footer-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(0,0,0,0.04);
+        padding-top: 16px;
+    }
+
+    .dealer-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dealer-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .dealer-name {
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--text-main);
+        margin: 0;
+    }
+
+    .dealer-type {
+        font-size: 11px;
+        color: var(--text-muted);
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .price-tag {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+    }
+
+    .price-tag span {
+        font-size: 12px;
+        font-weight: normal;
+        color: var(--text-muted);
+    }
+
+    .car-card-collection {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 20px;
+        border: 1px solid #f1f3f5;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .car-card-collection:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+
+    .collection-specs {
+        display: flex;
+        gap: 16px;
+        color: var(--text-muted);
+        font-size: 12px;
+        margin: 16px 0 20px 0;
+        align-items: center;
+    }
+
+    .collection-specs span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .main-content-area {
+        padding: 0 80px 80px 80px;
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+
+    .custom-alert {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--primary-bg);
+        color: #fff;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transform: translateY(150%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-alert.show {
+        transform: translateY(0);
+    }
+
+    @media (max-width: 991px) {
+        .search-card {
+            grid-template-columns: 1fr;
+        }
+        .hero-section, .main-content-area {
+            padding: 20px;
+        }
+        .navbar-custom {
+            padding: 16px 20px;
+        }
+    }
