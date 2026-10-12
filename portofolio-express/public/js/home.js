@@ -1,9 +1,40 @@
 /* ==========================================================
    HOME.JS - AUGUSTO NEVES / JOKER UI
-   Versão completa e atualizada - Responsiva + Mobile Menu
+   Versão final: menu mobile + carrossel + revelações
    ========================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    /* ========================================================
+       0. PROTEÇÃO GLOBAL CONTRA SCROLL LATERAL
+       ======================================================== */
+    // Garante que o body nunca cria scroll horizontal
+    document.documentElement.style.overflowX = 'hidden';
+    document.body.style.overflowX = 'hidden';
+
+    // Bloqueia qualquer gesto que tente mover a tela lateralmente no mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    document.addEventListener('touchstart', function (e) {
+        if (e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+        if (e.touches.length === 1) {
+            const dx = Math.abs(e.touches[0].clientX - touchStartX);
+            const dy = Math.abs(e.touches[0].clientY - touchStartY);
+
+            // Se o movimento for mais horizontal do que vertical, bloqueia
+            if (dx > dy && dx > 10) {
+                e.preventDefault();
+            }
+        }
+    }, { passive: false });
+
 
     /* ========================================================
        1. HERO CAROUSEL
@@ -67,22 +98,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function nextHeroSlide() {
         if (!heroSlides.length) return;
-        let next = (currentHeroIndex + 1) % heroSlides.length;
+        const next = (currentHeroIndex + 1) % heroSlides.length;
         setHeroSlide(next);
     }
 
     function prevHeroSlide() {
         if (!heroSlides.length) return;
-        let prev = (currentHeroIndex - 1 + heroSlides.length) % heroSlides.length;
+        const prev = (currentHeroIndex - 1 + heroSlides.length) % heroSlides.length;
         setHeroSlide(prev);
     }
 
-    // Expor funções no escopo global (usadas nos onclick do HTML)
+    // Expor funções globais (usadas nos onclick do HTML)
     window.setHeroSlide = setHeroSlide;
     window.nextHeroSlide = nextHeroSlide;
     window.prevHeroSlide = prevHeroSlide;
 
-    // Auto-play do carrossel
+    // Auto-play do carrossel (só se houver mais de 1 slide)
     if (heroSlides.length > 1) {
         setInterval(() => { nextHeroSlide(); }, 7000);
     }
@@ -94,76 +125,71 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuHamburger = document.getElementById('menuHamburger');
     const mobileMenu = document.getElementById('mobileMenu');
 
+    function openMobileMenu() {
+        if (!mobileMenu || !menuHamburger) return;
+
+        mobileMenu.classList.add('active');
+        menuHamburger.classList.add('active');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        menuHamburger.setAttribute('aria-label', 'Fechar menu');
+
+        // Bloquear scroll do body
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+        if (!mobileMenu || !menuHamburger) return;
+
+        mobileMenu.classList.remove('active');
+        menuHamburger.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        menuHamburger.setAttribute('aria-label', 'Abrir menu');
+
+        // Restaurar scroll
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+    }
+
     if (menuHamburger && mobileMenu) {
 
-        // Abrir / fechar menu
+        // Abrir / fechar com clique no hamburger
         menuHamburger.addEventListener('click', function (e) {
             e.stopPropagation();
-            const isActive = mobileMenu.classList.toggle('active');
-            document.body.style.overflow = isActive ? 'hidden' : '';
-
-            // Transformar hamburger em X
-            const spans = menuHamburger.querySelectorAll('span');
-            if (isActive) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            if (mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
             } else {
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
+                openMobileMenu();
             }
         });
 
-        // Fechar ao clicar num link
+        // Fechar ao clicar em qualquer link do menu
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function () {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-
-                const spans = menuHamburger.querySelectorAll('span');
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
+                closeMobileMenu();
             });
         });
 
-        // Fechar ao clicar fora do menu
+        // Fechar ao clicar no backdrop (fora dos links)
         mobileMenu.addEventListener('click', function (e) {
-            if (e.target === mobileMenu) {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-
-                const spans = menuHamburger.querySelectorAll('span');
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
+            if (e.target === mobileMenu ||
+                e.target.classList.contains('mobile-menu-backdrop') ||
+                e.target.classList.contains('mobile-menu-bg')) {
+                closeMobileMenu();
             }
         });
 
         // Fechar com tecla ESC
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-
-                const spans = menuHamburger.querySelectorAll('span');
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
+                closeMobileMenu();
             }
         });
 
-        // Fechar menu ao redimensionar para desktop
+        // Fechar automaticamente se redimensionar para desktop
         window.addEventListener('resize', function () {
             if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-
-                const spans = menuHamburger.querySelectorAll('span');
-                spans[0].style.transform = '';
-                spans[1].style.opacity = '';
-                spans[2].style.transform = '';
+                closeMobileMenu();
             }
         });
     }
@@ -179,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ========================================================
-       4. OBSERVER GENÉRICO (REVEAL)
+       4. OBSERVER GENÉRICO (FADE REVEAL)
        ======================================================== */
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -276,7 +302,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     setTimeout(() => {
                         item.classList.add('revealed');
                         const fill = item.querySelector('.skill-bar-fill');
-                        if (fill) { fill.style.width = fill.getAttribute('data-width') + '%'; }
+                        if (fill) {
+                            fill.style.width = fill.getAttribute('data-width') + '%';
+                        }
                     }, index * 120);
                 });
                 skillsObserver.unobserve(entry.target);
@@ -401,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ========================================================
-       14. GRANDES HEADERS (PROJECTS, PLANS, CONTACT, SERVICES, CV)
+       14. GRANDES HEADERS
        ======================================================== */
     const sectionHeaderObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -491,9 +519,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ========================================================
-       18. SMOOTH SCROLL PARA PROJECTOS (BOTÃO HERO)
+       18. SMOOTH SCROLL PARA PROJECTOS
        ======================================================== */
-    const heroProjectsBtn = document.querySelector('.btn-hero-primary');
+    const heroProjectsBtn = document.querySelector('.hero-actions-row .btn-hero-primary');
     if (heroProjectsBtn) {
         heroProjectsBtn.addEventListener('click', function () {
             const target = document.querySelector('.projects-matrix-section');
@@ -505,13 +533,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     /* ========================================================
-       19. FALLBACK PARA NAVEGAÇÃO POR TECLADO NO MOBILE MENU
+       19. SEGURANÇA EXTRA: FORÇAR FECHO DO MENU NO LOAD
        ======================================================== */
     if (mobileMenu) {
-        const focusable = mobileMenu.querySelectorAll('a');
-        focusable.forEach(el => {
-            el.setAttribute('tabindex', '0');
-        });
+        mobileMenu.classList.remove('active');
+        mobileMenu.setAttribute('aria-hidden', 'true');
     }
+    if (menuHamburger) {
+        menuHamburger.classList.remove('active');
+    }
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
 
 }); // FIM DO DOMContentLoaded
