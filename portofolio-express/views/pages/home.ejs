@@ -2,8 +2,9 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#06040a">
+    <meta name="format-detection" content="telephone=no">
     <title><%= title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,15 +12,17 @@
 </head>
 <body>
 
+    <!-- GLOWS DE FUNDO -->
     <div class="ambient-purple-glow-1"></div>
     <div class="ambient-purple-glow-2"></div>
     <div class="ambient-purple-glow-3"></div>
 
-    <!-- HEADER -->
+    <!-- ===== HEADER ===== -->
     <header>
         <a href="/" class="logo-hurk">
             <img src="/images/logo.png" alt="Augusto Neves Logo" onerror="this.style.display='none'">
         </a>
+
         <ul class="nav-menu">
             <li><a href="/" class="<%= activePage === 'home' ? 'active' : '' %>">Início</a></li>
             <li><a href="/projetos" class="<%= activePage === 'projects' ? 'active' : '' %>">Projectos <span class="nav-badge">12</span></a></li>
@@ -28,26 +31,55 @@
             <li><a href="/rentflow">Rentflow</a></li>
             <li><a href="/contactos" class="<%= activePage === 'contacts' ? 'active' : '' %>">Contactos</a></li>
         </ul>
-        <div class="menu-hamburger" id="menuHamburger">
+
+        <button class="menu-hamburger" id="menuHamburger" aria-label="Abrir menu" type="button">
             <span></span><span></span><span></span>
-        </div>
+        </button>
     </header>
 
-    <!-- MOBILE MENU OVERLAY -->
-    <div class="mobile-menu-overlay" id="mobileMenu">
+    <!-- ===== MOBILE MENU OVERLAY ===== -->
+    <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="mobile-menu-bg" style="background-image: url('/images/work4.png');"></div>
+        <div class="mobile-menu-backdrop"></div>
+
         <div class="mobile-menu-inner">
+            <div class="mobile-menu-brand">
+                <img src="/images/favicon.png" alt="Joker UI" onerror="this.style.display='none'">
+                <span>JOKER UI</span>
+            </div>
+
             <ul class="mobile-nav-list">
-                <li><a href="/" class="<%= activePage === 'home' ? 'active' : '' %>">Início</a></li>
-                <li><a href="/projetos" class="<%= activePage === 'projects' ? 'active' : '' %>">Projectos <span class="nav-badge">12</span></a></li>
-                <li><a href="https://renovaluz.ao/">Renovaluz</a></li>
-                <li><a href="https://metarlugias.onrender.com/">Metarlugias</a></li>
-                <li><a href="/rentflow">Rentflow</a></li>
-                <li><a href="/contactos" class="<%= activePage === 'contacts' ? 'active' : '' %>">Contactos</a></li>
+                <li><a href="/" class="<%= activePage === 'home' ? 'active' : '' %>"><span class="num">01</span> Início</a></li>
+                <li><a href="/projetos" class="<%= activePage === 'projects' ? 'active' : '' %>"><span class="num">02</span> Projectos <span class="nav-badge">12</span></a></li>
+                <li><a href="https://renovaluz.ao/" target="_blank" rel="noopener"><span class="num">03</span> Renovaluz</a></li>
+                <li><a href="https://metarlugias.onrender.com/" target="_blank" rel="noopener"><span class="num">04</span> Metarlugias</a></li>
+                <li><a href="/rentflow"><span class="num">05</span> Rentflow</a></li>
+                <li><a href="/contactos" class="<%= activePage === 'contacts' ? 'active' : '' %>"><span class="num">06</span> Contactos</a></li>
             </ul>
+
+            <div class="mobile-menu-footer">
+                <a href="mailto:augustoneve22@gmail.com" class="mobile-menu-email">
+                    ✉ augustoneve22@gmail.com
+                </a>
+                <div class="mobile-menu-social">
+                    <a href="https://www.facebook.com/denyneves.francisco/" target="_blank" rel="noopener" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="https://www.instagram.com/denyitachi14/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/augusto-neves-134271369/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@NerdsAI-b9l" target="_blank" rel="noopener" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#ffffff" stroke="none"></polygon></svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- HERO -->
+    <!-- ===== HERO ===== -->
     <section class="hero-fullscreen-stamp">
         <div class="hero-bg-slide active" style="background-image: url('/images/fundo.png');"></div>
         <div class="hero-bg-slide" style="background-image: url('/images/fundo1.png');"></div>
@@ -125,7 +157,7 @@
         </div>
     </section>
 
-    <!-- FEATURES BAR -->
+    <!-- ===== FEATURES BAR ===== -->
     <section class="features-bar-section">
         <div class="features-bar-inner">
             <div class="feature-item-inline">
@@ -163,7 +195,6 @@
             </div>
         </section>
 
-        <!-- STATS, SKILLS & INTERESTS -->
         <section class="stats-skills-section">
             <div class="stats-grid">
                 <div class="stat-card">
