@@ -1,16 +1,22 @@
-/* ==========================================
-   RESET E BASE
-   ========================================== */
-* {
+/* ==========================================================
+   RESET GLOBAL + PROTEÇÃO ANTI-OVERFLOW
+   ========================================================== */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -23,17 +29,23 @@ body {
     perspective: 1500px;
     width: 100%;
     max-width: 100vw;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-img {
+/* PROTEÇÃO CONTRA OVERFLOW LATERAL */
+img,
+svg,
+video,
+iframe {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* ==========================================
-   GLOWS DE FUNDO (CORRIGIDOS)
-   ========================================== */
+/* ==========================================================
+   GLOWS DE FUNDO
+   ========================================================== */
 .ambient-purple-glow-1 {
     position: fixed;
     top: 5%;
@@ -70,9 +82,9 @@ img {
     opacity: 0.5;
 }
 
-/* ==========================================
+/* ==========================================================
    CONTAINERS
-   ========================================== */
+   ========================================================== */
 .main-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -91,9 +103,9 @@ img {
     width: 100%;
 }
 
-/* ==========================================
-   HEADER (CORRIGIDO)
-   ========================================== */
+/* ==========================================================
+   HEADER
+   ========================================================== */
 header {
     position: absolute;
     top: 0;
@@ -106,6 +118,7 @@ header {
     padding: 25px 60px;
     z-index: 100;
     box-sizing: border-box;
+    background: transparent;
 }
 
 .logo-hurk {
@@ -134,10 +147,7 @@ header {
     gap: 30px;
     list-style: none;
     align-items: center;
-    background: none;
-    border: none;
     padding: 0;
-    box-shadow: none;
     flex-wrap: nowrap;
 }
 
@@ -209,13 +219,16 @@ header {
     50% { box-shadow: 0 0 22px rgba(217, 70, 239, 0.9); }
 }
 
+/* ==========================================================
+   MENU HAMBURGER
+   ========================================================== */
 .menu-hamburger {
     display: none;
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     align-items: center;
     justify-content: center;
     background: none;
@@ -223,10 +236,8 @@ header {
     transition: all 0.3s ease;
     z-index: 200;
     position: relative;
-}
-
-.menu-hamburger:hover {
-    transform: rotate(90deg);
+    flex-shrink: 0;
+    padding: 0;
 }
 
 .menu-hamburger span {
@@ -236,69 +247,263 @@ header {
     background: linear-gradient(90deg, #a78bfa, #c084fc);
     border-radius: 2px;
     box-shadow: 0 0 10px rgba(167, 139, 250, 0.9);
-    transition: all 0.3s ease;
+    transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform-origin: center;
 }
 
-.menu-hamburger:hover span {
-    width: 28px;
+.menu-hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
 }
 
-/* MOBILE MENU OVERLAY */
+.menu-hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.menu-hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* ==========================================================
+   MOBILE MENU OVERLAY
+   ========================================================== */
 .mobile-menu-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(6, 4, 10, 0.98);
-    backdrop-filter: blur(30px);
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     z-index: 150;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.4s ease, visibility 0.4s ease;
+    overflow: hidden;
 }
 
 .mobile-menu-overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
+/* FUNDO COM IMAGEM work4.png */
+.mobile-menu-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transform: scale(1.1);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.active .mobile-menu-bg {
+    transform: scale(1);
+}
+
+/* BACKDROP ESCURO POR CIMA DA IMAGEM */
+.mobile-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(6, 4, 10, 0.85) 0%,
+        rgba(6, 4, 10, 0.92) 50%,
+        rgba(6, 4, 10, 0.98) 100%
+    );
+    z-index: 2;
+}
+
+/* CONTEÚDO DO MENU */
 .mobile-menu-inner {
-    padding: 40px;
+    position: relative;
+    z-index: 3;
     width: 100%;
-    max-width: 400px;
+    height: 100%;
+    padding: 100px 30px 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.mobile-menu-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(167, 139, 250, 0.8);
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.mobile-menu-overlay.active .mobile-menu-brand {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-menu-brand img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.8));
 }
 
 .mobile-nav-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    text-align: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 420px;
+    flex: 1;
+    justify-content: center;
+}
+
+.mobile-nav-list li {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.active .mobile-nav-list li:nth-child(1) { transition-delay: 0.15s; }
+.mobile-menu-overlay.active .mobile-nav-list li:nth-child(2) { transition-delay: 0.20s; }
+.mobile-menu-overlay.active .mobile-nav-list li:nth-child(3) { transition-delay: 0.25s; }
+.mobile-menu-overlay.active .mobile-nav-list li:nth-child(4) { transition-delay: 0.30s; }
+.mobile-menu-overlay.active .mobile-nav-list li:nth-child(5) { transition-delay: 0.35s; }
+.mobile-menu-overlay.active .mobile-nav-list li:nth-child(6) { transition-delay: 0.40s; }
+
+.mobile-menu-overlay.active .mobile-nav-list li {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .mobile-nav-list li a {
     color: #e2e8f0;
     text-decoration: none;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     text-transform: capitalize;
     transition: all 0.3s ease;
-    display: block;
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    position: relative;
+}
+
+.mobile-nav-list li a .num {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #a78bfa;
+    opacity: 0.6;
+    min-width: 24px;
+    transition: all 0.3s ease;
 }
 
 .mobile-nav-list li a:hover,
 .mobile-nav-list li a.active {
-    color: #a78bfa;
-    text-shadow: 0 0 20px rgba(167, 139, 250, 0.8);
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(217, 70, 239, 0.1) 100%);
+    border-color: rgba(167, 139, 250, 0.4);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateX(6px);
 }
 
-/* ==========================================
-   HERO (CORRIGIDO)
-   ========================================== */
+.mobile-nav-list li a:hover .num,
+.mobile-nav-list li a.active .num {
+    color: #d946ef;
+    opacity: 1;
+    text-shadow: 0 0 12px rgba(217, 70, 239, 0.8);
+}
+
+.mobile-nav-list li a.active {
+    color: #a78bfa;
+}
+
+.mobile-menu-footer {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(139, 92, 246, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.mobile-menu-overlay.active .mobile-menu-footer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-menu-email {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-email:hover {
+    color: #a78bfa;
+    text-shadow: 0 0 15px rgba(167, 139, 250, 0.8);
+}
+
+.mobile-menu-social {
+    display: flex;
+    gap: 12px;
+}
+
+.mobile-menu-social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-social a:hover {
+    background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
+    color: #ffffff;
+    border-color: transparent;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.6);
+}
+
+.mobile-menu-social a svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
 .hero-fullscreen-stamp {
     position: relative;
     width: 100%;
@@ -797,9 +1002,9 @@ header {
     filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.6));
 }
 
-/* ==========================================
+/* ==========================================================
    FEATURES BAR
-   ========================================== */
+   ========================================================== */
 .features-bar-section {
     width: 100%;
     max-width: 1300px;
@@ -856,9 +1061,9 @@ header {
     flex-shrink: 0;
 }
 
-/* ==========================================
+/* ==========================================================
    ABOUT
-   ========================================== */
+   ========================================================== */
 .about-hero-section {
     display: grid;
     grid-template-columns: 420px 1fr;
@@ -869,30 +1074,6 @@ header {
     margin: 0 auto;
     position: relative;
     z-index: 1;
-}
-
-.about-hero-section::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    left: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-}
-
-.about-hero-section::after {
-    content: '';
-    position: absolute;
-    bottom: -100px;
-    right: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(217, 70, 239, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
 }
 
 .avatar-area {
@@ -988,9 +1169,9 @@ header {
     font-weight: 600;
 }
 
-/* ==========================================
+/* ==========================================================
    STATS, SKILLS & INTERESTS
-   ========================================== */
+   ========================================================== */
 .stats-skills-section {
     position: relative;
     z-index: 1;
@@ -999,18 +1180,6 @@ header {
     padding: 0 40px 60px 40px;
     width: 100%;
     box-sizing: border-box;
-}
-
-.stats-skills-section::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    right: -200px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
 }
 
 .stats-grid {
@@ -1335,9 +1504,9 @@ header {
     line-height: 1.3;
 }
 
-/* ==========================================
+/* ==========================================================
    SERVIÇOS
-   ========================================== */
+   ========================================================== */
 .services-heading-area {
     text-align: center;
     padding: 50px 0 40px 0;
@@ -1588,9 +1757,9 @@ header {
     line-height: 1.6;
 }
 
-/* ==========================================
+/* ==========================================================
    CV MATRIZ
-   ========================================== */
+   ========================================================== */
 .cv-section-wrapper {
     padding: 100px 40px 80px 40px;
     position: relative;
@@ -1598,30 +1767,6 @@ header {
     margin: 0 auto;
     z-index: 1;
     box-sizing: border-box;
-}
-
-.cv-section-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: -200px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-}
-
-.cv-section-wrapper::after {
-    content: '';
-    position: absolute;
-    bottom: 10%;
-    right: -200px;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(217, 70, 239, 0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
 }
 
 .cv-header {
@@ -1906,38 +2051,14 @@ header {
     font-weight: 500;
 }
 
-/* ==========================================
+/* ==========================================================
    PROJECTS MATRIX
-   ========================================== */
+   ========================================================== */
 .projects-matrix-section {
     padding: 100px 0 80px 0;
     position: relative;
     overflow: hidden;
     z-index: 1;
-}
-
-.projects-matrix-section::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1400px;
-    height: 1400px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-.projects-matrix-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), rgba(217, 70, 239, 0.5), rgba(139, 92, 246, 0.5), transparent);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
 .projects-header {
@@ -2013,30 +2134,6 @@ header {
     transform: translateY(-8px) scale(1.03);
     border-color: rgba(167, 139, 250, 0.7);
     box-shadow: 0 35px 75px rgba(0, 0, 0, 0.7), 0 0 55px rgba(139, 92, 246, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.project-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at top right, rgba(217, 70, 239, 0.35), transparent 70%);
-    z-index: 2;
-    pointer-events: none;
-}
-
-.project-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.35), transparent 70%);
-    z-index: 2;
-    pointer-events: none;
 }
 
 .project-card-image {
@@ -2142,9 +2239,9 @@ header {
     fill: none;
 }
 
-/* ==========================================
+/* ==========================================================
    PILLS
-   ========================================== */
+   ========================================================== */
 .pills-cloud {
     display: flex;
     flex-wrap: wrap;
@@ -2202,9 +2299,9 @@ header {
 .p12 { transform: rotate(2deg); }
 .p13 { transform: rotate(-3deg); }
 
-/* ==========================================
+/* ==========================================================
    BOTTOM MARQUEE
-   ========================================== */
+   ========================================================== */
 .bottom-marquee {
     background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 50%, #d946ef 100%);
     color: #ffffff;
@@ -2221,6 +2318,7 @@ header {
     margin-bottom: 70px;
     box-shadow: 0 4px 30px rgba(139, 92, 246, 0.5), inset 0 1px 0 rgba(255,255,255,0.2);
     position: relative;
+    width: 100%;
 }
 
 .bottom-marquee::before,
@@ -2255,37 +2353,13 @@ header {
     100% { transform: translateX(-50%); }
 }
 
-/* ==========================================
+/* ==========================================================
    PLANOS
-   ========================================== */
+   ========================================================== */
 .plans-section-wrapper {
     padding: 100px 0 80px 0;
     position: relative;
     overflow: hidden;
-}
-
-.plans-section-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1400px;
-    height: 1400px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-.plans-section-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), rgba(217, 70, 239, 0.5), rgba(139, 92, 246, 0.5), transparent);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
 .plans-header {
@@ -2653,9 +2727,9 @@ header {
     fill: none;
 }
 
-/* ==========================================
+/* ==========================================================
    CONTACTO
-   ========================================== */
+   ========================================================== */
 .footer-heading-area {
     text-align: center;
     padding: 40px 0;
@@ -2749,9 +2823,9 @@ header {
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 25px rgba(139, 92, 246, 0.3);
 }
 
-/* ==========================================
+/* ==========================================================
    FOOTER
-   ========================================== */
+   ========================================================== */
 .footer-supreme-container {
     width: 100%;
     max-width: 1160px;
@@ -3060,9 +3134,9 @@ header {
     text-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
 }
 
-/* ==========================================
+/* ==========================================================
    FADE REVEAL
-   ========================================== */
+   ========================================================== */
 .fade-reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -3096,9 +3170,9 @@ header {
     transform: translateX(0);
 }
 
-/* ==========================================
-   MEDIA QUERIES - TABLET GRANDE (1600px)
-   ========================================== */
+/* ==========================================================
+   MEDIA QUERIES - 1600px
+   ========================================================== */
 @media (max-width: 1600px) {
     .projects-grid-6 {
         grid-template-columns: repeat(6, 1fr);
@@ -3113,9 +3187,9 @@ header {
     }
 }
 
-/* ==========================================
-   MEDIA QUERIES - TABLET (1280px)
-   ========================================== */
+/* ==========================================================
+   MEDIA QUERIES - 1280px (TABLET GRANDE)
+   ========================================================== */
 @media (max-width: 1280px) {
     header {
         padding: 20px 30px;
@@ -3167,9 +3241,9 @@ header {
     }
 }
 
-/* ==========================================
-   MEDIA QUERIES - TABLET PEQUENO (1024px)
-   ========================================== */
+/* ==========================================================
+   MEDIA QUERIES - 1024px (TABLET)
+   ========================================================== */
 @media (max-width: 1024px) {
     .menu-hamburger {
         display: flex;
@@ -3178,7 +3252,7 @@ header {
         display: none;
     }
     header {
-        padding: 20px 30px;
+        padding: 20px 25px;
     }
 
     .hero-content-grid {
@@ -3259,9 +3333,9 @@ header {
     }
 }
 
-/* ==========================================
-   MEDIA QUERIES - MOBILE GRANDE (768px)
-   ========================================== */
+/* ==========================================================
+   MEDIA QUERIES - 768px (MOBILE GRANDE)
+   ========================================================== */
 @media (max-width: 768px) {
     header {
         padding: 18px 20px;
@@ -3639,9 +3713,9 @@ header {
     }
 }
 
-/* ==========================================
-   MEDIA QUERIES - MOBILE PEQUENO (480px)
-   ========================================== */
+/* ==========================================================
+   MEDIA QUERIES - 480px (MOBILE PEQUENO)
+   ========================================================== */
 @media (max-width: 480px) {
     header {
         padding: 15px 15px;
@@ -3650,11 +3724,20 @@ header {
         height: 30px;
     }
     .menu-hamburger {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
     }
     .menu-hamburger span {
         width: 22px;
+    }
+
+    .mobile-menu-inner {
+        padding: 90px 20px 30px 20px;
+    }
+    .mobile-nav-list li a {
+        font-size: 1.15rem;
+        padding: 12px 16px;
+        gap: 12px;
     }
 
     .hero-inner-container {
@@ -3829,15 +3912,11 @@ header {
         width: 30px;
         height: 30px;
     }
-
-    .mobile-nav-list li a {
-        font-size: 1.1rem;
-    }
 }
 
-/* ==========================================
-   REDUÇÃO DE MOVIMENTO (ACESSIBILIDADE)
-   ========================================== */
+/* ==========================================================
+   ACESSIBILIDADE - REDUZIR MOVIMENTO
+   ========================================================== */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -3849,9 +3928,9 @@ header {
     }
 }
 
-/* ==========================================
-   AJUSTES PARA ORIENTAÇÃO LANDSCAPE EM MOBILE
-   ========================================== */
+/* ==========================================================
+   LANDSCAPE EM MOBILE
+   ========================================================== */
 @media (max-width: 900px) and (orientation: landscape) {
     .hero-fullscreen-stamp {
         min-height: 600px;
